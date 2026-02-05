@@ -1,6 +1,7 @@
 # 文件保险箱 (FileStrongbox)
 
 一款简洁易用的文件加密工具，采用拖放操作，安全可靠。
+<img width="1409" height="1062" alt="image" src="https://github.com/user-attachments/assets/71d33c25-6741-413a-8d3e-a036f9588ea4" />
 
 ## 功能特色
 
