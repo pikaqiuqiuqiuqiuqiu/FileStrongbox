@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="FileStrongbox.Views.AboutWindow"
+        Title="关于"
+        Width="340" Height="220"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <StackPanel Margin="30" Spacing="15" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <PathIcon Data="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
+                  Width="50" Height="50"
+                  Foreground="#4caf50"
+                  HorizontalAlignment="Center"/>
+
+        <TextBlock Text="文件保险箱"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Text="by pikapikapi"
+                   FontSize="13"
+                   Foreground="#666666"
+                   HorizontalAlignment="Center"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="25" Margin="0,5,0,0">
+            <Button x:Name="Link52Pojie"
+                    Content="吾爱破解独家首发"
+                    Classes="link"
+                    Click="OnLink52PojieClick"
+                    Cursor="Hand"/>
+            <Button x:Name="LinkGitHub"
+                    Content="源代码"
+                    Classes="link"
+                    Click="OnLinkGitHubClick"
+                    Cursor="Hand"/>
+        </StackPanel>
+    </StackPanel>
+
+    <Window.Styles>
+        <Style Selector="Button.link">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#1976d2"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style Selector="Button.link:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+        </Style>
+    </Window.Styles>
+</Window>

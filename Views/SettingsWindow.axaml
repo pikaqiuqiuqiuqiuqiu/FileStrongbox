@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="FileStrongbox.Views.SettingsWindow"
+        Title="设置"
+        Width="400" Height="280"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False">
+
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom" Background="#f8f9fa" BorderBrush="#dee2e6" BorderThickness="0,1,0,0" Padding="20,12">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <Button x:Name="CancelButton"
+                        Content="取消"
+                        Width="80"
+                        HorizontalContentAlignment="Center"
+                        Click="OnCancelClick"/>
+                <Button x:Name="SaveButton"
+                        Content="保存"
+                        Width="80"
+                        HorizontalContentAlignment="Center"
+                        Classes="accent"
+                        Click="OnSaveClick"/>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Margin="20" Spacing="12">
+            <TextBlock Text="加密文件名格式"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,5"/>
+
+            <RadioButton x:Name="FullEncryptOption"
+                         GroupName="FileNameFormat"
+                         Content="完全重命名"/>
+
+            <RadioButton x:Name="KeepOriginalOption"
+                         GroupName="FileNameFormat"
+                         Content="保留原名"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <RadioButton x:Name="NewExtensionOption"
+                             GroupName="FileNameFormat"
+                             Content="新后缀"/>
+                <TextBox x:Name="CustomExtensionBox"
+                         Width="100"
+                         Watermark=".data"
+                         IsVisible="False"
+                         VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

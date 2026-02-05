@@ -1,0 +1,112 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FileStrongbox.ViewModels"
+        x:Class="FileStrongbox.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="文件保险箱 - 吾爱独家发布 by pikapikapi"
+        Width="700" Height="500"
+        MinWidth="600" MinHeight="400"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <Style Selector="Menu">
+            <Setter Property="Background" Value="#f8f9fa"/>
+            <Setter Property="Padding" Value="5,2"/>
+        </Style>
+        <Style Selector="MenuItem">
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style Selector="MenuItem:pointerover /template/ Border#PART_LayoutRoot">
+            <Setter Property="Background" Value="#e9ecef"/>
+        </Style>
+    </Window.Styles>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Top" BorderBrush="#dee2e6" BorderThickness="0,0,0,1">
+            <Menu>
+                <MenuItem Header="  设置  " Command="{Binding OpenSettingsCommand}" CommandParameter="{Binding $parent[Window]}"/>
+                <MenuItem Header="  源代码  " Command="{Binding OpenSourceCodeCommand}"/>
+                <MenuItem Header="  关于  " Command="{Binding ShowAboutCommand}" CommandParameter="{Binding $parent[Window]}"/>
+            </Menu>
+        </Border>
+
+        <Border DockPanel.Dock="Bottom" Background="#f8f9fa" BorderBrush="#dee2e6" BorderThickness="0,1,0,0" Padding="12,8">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Right"
+                           Text="{Binding ProgressText}"
+                           IsVisible="{Binding IsProcessing}"
+                           Foreground="#6c757d"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"/>
+                <ProgressBar DockPanel.Dock="Right"
+                             Width="120"
+                             Height="6"
+                             Value="{Binding Progress}"
+                             Maximum="100"
+                             IsVisible="{Binding IsProcessing}"
+                             VerticalAlignment="Center"
+                             Foreground="#4caf50"/>
+                <TextBlock Text="{Binding StatusMessage}"
+                           VerticalAlignment="Center"
+                           Foreground="#495057"
+                           TextTrimming="CharacterEllipsis"/>
+            </DockPanel>
+        </Border>
+
+        <Grid Margin="20" ColumnDefinitions="*,20,*">
+            <Border Grid.Column="0"
+                    x:Name="EncryptZone"
+                    Background="{Binding IsProcessing, Converter={x:Static vm:MainWindowViewModel.DisabledBgConverter}, ConverterParameter=#e8f5e9}"
+                    BorderBrush="{Binding IsProcessing, Converter={x:Static vm:MainWindowViewModel.DisabledBorderConverter}, ConverterParameter=#4caf50}"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Opacity="{Binding IsProcessing, Converter={x:Static vm:MainWindowViewModel.DisabledOpacityConverter}}"
+                    IsEnabled="{Binding !IsProcessing}"
+                    DragDrop.AllowDrop="{Binding !IsProcessing}">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="15">
+                    <PathIcon Data="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
+                              Width="64" Height="64"
+                              Foreground="#4caf50"/>
+                    <TextBlock Text="加密区"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="#2e7d32"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="将文件或文件夹拖放到此处进行加密"
+                               Foreground="#666666"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2"
+                    x:Name="DecryptZone"
+                    Background="{Binding IsProcessing, Converter={x:Static vm:MainWindowViewModel.DisabledBgConverter}, ConverterParameter=#e3f2fd}"
+                    BorderBrush="{Binding IsProcessing, Converter={x:Static vm:MainWindowViewModel.DisabledBorderConverter}, ConverterParameter=#2196f3}"
+                    BorderThickness="2"
+                    CornerRadius="10"
+                    Opacity="{Binding IsProcessing, Converter={x:Static vm:MainWindowViewModel.DisabledOpacityConverter}}"
+                    IsEnabled="{Binding !IsProcessing}"
+                    DragDrop.AllowDrop="{Binding !IsProcessing}">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="15">
+                    <PathIcon Data="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3M7,10V8H17V10"
+                              Width="64" Height="64"
+                              Foreground="#2196f3"/>
+                    <TextBlock Text="解密区"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="#1565c0"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="将文件或文件夹拖放到此处进行解密"
+                               Foreground="#666666"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>
